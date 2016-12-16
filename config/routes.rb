@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  root 'menus#index'
 
   resources :categories
   resources :menus

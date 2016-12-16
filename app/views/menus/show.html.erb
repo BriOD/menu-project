@@ -1,1 +1,16 @@
 <h1>  <%= @menu.name %> </h1>
+
+  <% @menu.categories.each do |category| %>
+    <fieldset>
+      <h2><%= category.name %> <br></h2>
+        <% category.items.each do |item| %>
+        <div>
+          <%= item.name %> | <%= item.price %><br>
+           <%= item.description %>
+           <br>
+        </div>
+          <% end %>
+
+    </fieldset>
+
+    <% end %>
