@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20161215201510) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
-    t.decimal  "price"
+    t.string   "price"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

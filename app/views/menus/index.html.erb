@@ -1,7 +1,9 @@
-<% @menus.each do |menu| %>
-<ul>
-<li>  <%= menu.name %> </li>
+<h1>Here Are Out Menus:</h1>
 
-</ul>
+  <% @menus.each do |menu| %>
+    <ul>
+      <li>  <%= link_to "#{menu.name}", menu_path(menu) %> </li>
 
-<% end %>
+    </ul>
+
+  <% end %>
