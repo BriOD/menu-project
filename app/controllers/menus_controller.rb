@@ -12,7 +12,13 @@ class MenusController < ApplicationController
   end
 
   def create
+    # raise params.inspect
     @menu = Menu.new(menu_params)
+    if @menu.save
+      redirect_to menu_path(@menu)
+    else
+      render 'new'
+    end
   end
 
   private
