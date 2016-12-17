@@ -1,7 +1,11 @@
 <%= form_for @menu do |f| %>
     <%= f.label :name %>
     <%= f.text_area :name %>
+    <br>
 
+
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+    <br>
 
     <%= f.submit "Create Menu" %>
 <% end %>
