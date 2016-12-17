@@ -1,6 +1,10 @@
 <%= form_for @category do |f| %>
   <%= f.label :name %>
   <%= f.text_area :name %>
+  <br>
+
+  <%= f.collection_check_boxes :item_ids, Item.all, :id, :name %>
+  <br>
 
   <%= f.submit "Create Category" %>
 
