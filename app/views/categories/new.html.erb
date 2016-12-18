@@ -3,8 +3,22 @@
   <%= f.text_area :name %>
   <br>
 
-  <%= f.collection_check_boxes :item_ids, Item.all, :id, :name %>
+  <%= f.collection_check_boxes :item_ids, @items, :id, :name %>
   <br>
+
+  <%= f.fields_for :item do |item_builder| %>
+  <%= item_builder.label :name %>
+  <%= item_builder.text_area :name %>
+
+  <%= item_builder.label :price %>
+  <%= item_builder.text_area :price %>
+
+  <%= item_builder.label :description %>
+  <%= item_builder.text_area :description %>
+
+  <% end %>
+
+
 
   <%= f.submit "Create Category" %>
 

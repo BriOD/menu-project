@@ -9,9 +9,11 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    @items = Item.all
   end
 
   def create
+    raise params.inspect
     @category = Category.new(category_params)
     if @category.save
       redirect_to category_path(@category)
