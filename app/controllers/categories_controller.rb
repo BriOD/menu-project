@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
   def new
     @category = Category.new
     @items = Item.all
+    @category.items.build
   end
 
   def create
@@ -25,6 +26,6 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, item_ids: [])
+    params.require(:category).permit(:name, item_ids: [], :items_attributes => [:name, :price, :description])
   end
 end
