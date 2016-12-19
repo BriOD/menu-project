@@ -11,6 +11,8 @@ class CategoriesController < ApplicationController
     @category = Category.new
     @items = Item.all
     @category.items.build
+    
+
   end
 
   def create
