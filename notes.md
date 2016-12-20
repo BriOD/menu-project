@@ -32,3 +32,9 @@ Next thing i want to do:
     What I want to do next:
       -create destroy actions for menu, category, and item. and display that in show pages.
       -left off: figuring out the correct path for a destroy action in category index page
+
+    Up next:
+      -create rating model
+      -create user model, devise
+      -users will be able to rate items. ratings table will need user_id, item_id, and a rating
+      
