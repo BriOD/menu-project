@@ -1,0 +1,14 @@
+<%= form_for @item do |f| %>
+  <%= f.label :name %>
+  <%= f.text_area :name %>
+<br>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+<br>
+  <%= f.label :price %>
+  <%= f.text_area :price %>
+<br>
+  <%= f.submit "Create Item" %>
+
+
+<% end %>

@@ -1,3 +1,6 @@
 <h1><%= @item.name %></h1>
 <%= @item.description %> <br>
 <%= @item.price %>
+<br>
+
+<%= link_to "Edit Item", edit_item_path(@item) %>

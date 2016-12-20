@@ -10,6 +10,24 @@ Next thing i want to do:
         <!-- def items_attributes=(item_attributes)
           item_attributes.values.each do |item_attribute|
             item = Item.find_or_create_by(item_attribute)
-            self.items << item THIS WILL RETURN ALL ITEMS 
+            self.items << item THIS WILL RETURN ALL ITEMS
           end
         end -->
+        -Updated to:
+        <!-- def items_attributes=(item_attributes)
+          item_attributes.values.each do |item_attribute|
+            if item_attribute[:name].present?
+              item = Item.find_or_create_by(item_attribute)
+              if !self.items.include?(item)
+                self.category_items.build(:item => item)
+              end
+            end
+          end
+        end -->
+        -also took out the @category.items.build in the controller, and replaced it with Item.new in the form
+        -to create or edit a category. This resolves the issue for now, but only limited to making 1 new item
+        -associated with the category.
+          <!-- -also mental note about fixing this. i feel like a real dev identifying a problem, and doing research to fix it -->
+
+    What I want to do next:
+      -create destroy actions for menu, category, and item. and display that in show pages.

@@ -1,10 +1,11 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show, :edit, :update]
+
   def index
     @items = Item.all
   end
 
   def show
-    @item = Item.find_by_id(params[:id])
   end
 
   def new
@@ -21,12 +22,28 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    # raise params.inspect
+    if @item.update(item_params)
+      redirect_to @item
+    else
+      render :edit
+    end
+  end
+
 
 
   private
 
   def item_params
     params.require(:item).permit(:name, :description, :price)
+  end
+
+  def set_item
+    @item = Item.find_by_id(params[:id])
   end
 
 
