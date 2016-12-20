@@ -1,10 +1,11 @@
 class MenusController < ApplicationController
+  before_action :set_menu, only: [:show, :edit, :update, :destroy]
+
   def index
     @menus = Menu.all
   end
 
   def show
-    @menu = Menu.find_by_id(params[:id])
   end
 
   def new
@@ -22,11 +23,9 @@ class MenusController < ApplicationController
   end
 
   def edit
-    @menu = Menu.find_by_id(params[:id])
   end
 
   def update
-    @menu = Menu.find_by_id(params[:id])
     if @menu.update(menu_params)
       redirect_to @menu
     else
@@ -34,7 +33,18 @@ class MenusController < ApplicationController
     end
   end
 
+
+  def destroy
+    @menu.destroy
+    redirect_to menus_path
+  end
+
   private
+
+  def set_menu
+    @menu = Menu.find_by_id(params[:id])
+  end
+
 
   def menu_params
     params.require(:menu).permit(:name, category_ids: [])

@@ -31,3 +31,4 @@ Next thing i want to do:
 
     What I want to do next:
       -create destroy actions for menu, category, and item. and display that in show pages.
+      -left off: figuring out the correct path for a destroy action in category index page
