@@ -1,7 +1,7 @@
-<h1><%= @category.name %>:</h1>
+<h1><%= @category.name %>:</h1> <%= link_to "Edit", edit_category_path %>
 
   <% @category.items.each do |item| %>
-  <h3>  <%= item.name %> -- <%= item.price %> </h3>
-  <h6>  <%= item.description %></h6>
+  <p>  <%= item.name %> -- <%= item.price %> </p>
+  <p>  -<%= item.description %></p>
 
   <% end %>
