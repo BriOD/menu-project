@@ -1,32 +1,3 @@
 <h1>Create A new Category</h1>
 
-<%= form_for @category do |f| %>
-  <%= f.label :name %>:
-  <%= f.text_area :name %>
-  <br>
-  <%= f.label :items %>:
-<br>
-  <%= f.collection_check_boxes :item_ids, @items, :id, :name %>
-  <br>
-
-  <br>
-<h3>or create a new item:</h3>
-  <%= f.fields_for :items do |item_builder| %>
-  <%= item_builder.label :name %>
-  <%= item_builder.text_area :name %>
-
-  <%= item_builder.label :price %>
-  <%= item_builder.text_area :price %>
-
-  <%= item_builder.label :description %>
-  <%= item_builder.text_area :description %>
-
-  <% end %>
-
-<br>
-
-
-  <%= f.submit "Create Category" %>
-
-
-<% end %>
+<%= render 'form' %>
