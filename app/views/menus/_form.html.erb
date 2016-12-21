@@ -3,7 +3,7 @@
     <%= f.text_area :name %>
     <br>
 
-
+    <p>Choose what categories you want in the menu:</p>
     <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
     <br>
 

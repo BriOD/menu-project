@@ -37,4 +37,5 @@ Next thing i want to do:
       -create rating model
       -create user model, devise
       -users will be able to rate items. ratings table will need user_id, item_id, and a rating
-      
+    Up Next:
+        -create roles with devise, guest, normal, admin
