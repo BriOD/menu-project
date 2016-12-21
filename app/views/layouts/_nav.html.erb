@@ -1,11 +1,58 @@
-<nav>
+<nav >
   <% if current_user %>
     <h4>Welcome <%= current_user.email %></h4>
   <% end %>
 
-  <%= link_to "Home", root_path %>
-  <%= link_to "Menus", menus_path %>
-  <%= link_to "Create A New Menu", new_menu_path %>
-  <%= link_to "Create A New Category", new_category_path %>
+  <%= link_to "Home", root_path, class: "btn-lg" %>
+
+  <% if user_signed_in? %>
+  <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn-lg" %>
+  <% else %>
+  <%= link_to "Sign in", new_user_session_path, class: "btn-lg" %>
+  <%= link_to "Sign up", new_user_registration_path, class: "btn-lg" %>
+  <% end %>
+
+  <% if !user_signed_in? %>
+   <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path, class: "btn-lg" %>
+  <% end %>
+  <br>
+  <%= link_to "Menus", menus_path, class: "btn-lg" %>
+  <%= link_to "Create A New Menu", new_menu_path, class: "btn-lg" %>
+  <%= link_to "Create A New Category", new_category_path, class: "btn-lg" %>
 
 </nav>
+
+
+<!-- <nav class="navbar navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">MenuProject</a>
+    </div>
+
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <%= link_to "Menus", menus_path %>
+        <%= link_to "Create A New Menu", new_menu_path %>
+        <%= link_to "Create A New Category", new_category_path %>
+      </ul>
+      <form class="navbar-form navbar-right" action="/login" method="POST">
+        <% if user_signed_in? %>
+        <p>Welcome <%= current_user.email %></p>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "Sign in", new_user_session_path %>
+          <%= link_to "Sign up", new_user_registration_path %>
+          <%= link_to 'Sign Out', destroy_user_session_path, class: 'btn btn-success btn-orange', method: :delete %>
+        <% end %>
+
+      </form>
+    </div><!--/.navbar-collapse -->
+
+  </div> <!-- /container -->
+</nav> -->
