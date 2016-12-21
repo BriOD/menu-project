@@ -32,6 +32,8 @@ gem 'pry-doc'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'devise'
+gem 'omniauth-facebook'
+
 
 
 group :development, :test do
