@@ -1,4 +1,8 @@
 <nav>
+  <% if current_user %>
+    <h4>Welcome <%= current_user.email %></h4>
+  <% end %>
+
   <%= link_to "Home", root_path %>
   <%= link_to "Menus", menus_path %>
   <%= link_to "Create A New Menu", new_menu_path %>
