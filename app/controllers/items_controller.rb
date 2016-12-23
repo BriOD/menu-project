@@ -6,6 +6,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @review = @item.reviews.build
+
   end
 
   def new
@@ -39,6 +41,8 @@ class ItemsController < ApplicationController
     @item.destroy
     redirect_to items_path
   end
+
+
 
 
 

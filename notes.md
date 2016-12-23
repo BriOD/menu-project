@@ -39,3 +39,8 @@ Next thing i want to do:
       -users will be able to rate items. ratings table will need user_id, item_id, and a rating
     Up Next:
         -create roles with devise, guest, normal, admin
+    Left off:
+      -Created roles for user.
+      -want to create Review model, and come back to straightening out proper roles and authorization
+    Up next:
+      -sort out how a user can make a comment and/or rating on an item 

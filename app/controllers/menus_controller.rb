@@ -16,8 +16,10 @@ class MenusController < ApplicationController
     # raise params.inspect
     @menu = Menu.new(menu_params)
     if @menu.save
+      flash[:notice] = "Menu succesfully created!"
       redirect_to menu_path(@menu)
     else
+      flash[:error] = "Invalid Menu, please try again."
       render 'new'
     end
   end
