@@ -40,4 +40,5 @@
       -Created roles for user.
       <!-- -want to create Review model, and come back to straightening out proper roles and authorization -->
       <!-- -sort out how a user can make a comment and/or rating on an item  -->
-      -specify roles and what actions a guest, a user and an admin can do, and implemt that in the controller and views
+      -specify roles and what actions a guest, a user and an admin can do, and implement that in the controller and views
+      -I think i want categories to be a nested resource of menu. on the menu show page you will be able to make a category/section, if you are am admin, otherwise it will just display menus.

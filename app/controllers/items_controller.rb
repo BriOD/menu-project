@@ -7,7 +7,6 @@ class ItemsController < ApplicationController
 
   def show
     @review = @item.reviews.build
-
   end
 
   def new

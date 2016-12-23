@@ -6,7 +6,7 @@
 
         <% category.items.each do |item| %>
         <div>
-          <%= item.name %> | <%= item.price %><br>
+          <%= link_to item.name, item_path(item) %> | <%= item.price %><br>
            <%= item.description %>
            <%= link_to "Edit Item", edit_item_path(item) %>
            <br>
