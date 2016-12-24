@@ -15,11 +15,16 @@ class ItemsController < ApplicationController
 
   def create
     # raise params.inspect
-    @item = Item.new(item_params)
-    if @item.save
-      redirect_to item_path(@item)
+    if current_user.admin?
+      @item = Item.new(item_params)
+      if @item.save
+        redirect_to item_path(@item)
+      else
+        render 'new'
+      end
     else
-      render 'new'
+      flash[:error] = "You are not authorized to create an item"
+      redirect_to :root
     end
   end
 
@@ -28,17 +33,27 @@ class ItemsController < ApplicationController
 
   def update
     # raise params.inspect
-    if @item.update(item_params)
-      redirect_to @item
+    if current_user.admin?
+      if @item.update(item_params)
+        redirect_to @item
+      else
+        render :edit
+      end
     else
-      render :edit
+      flash[:error] = "You are not authorized to edit an item"
+      redirect_to :root
     end
   end
 
 
   def destroy
-    @item.destroy
-    redirect_to items_path
+    if current_user.admin?
+      @item.destroy
+      redirect_to items_path
+    else
+      flash[:error] = "You are not authorized to delete an item"
+      redirect_to :root
+    end
   end
 
 

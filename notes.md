@@ -41,4 +41,8 @@
       <!-- -want to create Review model, and come back to straightening out proper roles and authorization -->
       <!-- -sort out how a user can make a comment and/or rating on an item  -->
       -specify roles and what actions a guest, a user and an admin can do, and implement that in the controller and views
+      Up next:
       -I think i want categories to be a nested resource of menu. on the menu show page you will be able to make a category/section, if you are am admin, otherwise it will just display menus.
+      -I want to limit a user to 1 review per item. A user can edit their own review, but they can't make a 2nd review on a item they already reviewed.
+      -be able to create a new category from individual menu show page, if you're an admin
+      -be able to edit ones review 

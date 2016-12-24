@@ -17,11 +17,16 @@ class CategoriesController < ApplicationController
 
   def create
     # raise params.inspect
-    @category = Category.new(category_params)
-    if @category.save
-      redirect_to category_path(@category)
+    if current_user.admin?
+      @category = Category.new(category_params)
+      if @category.save
+        redirect_to category_path(@category)
+      else
+        render 'new'
+      end
     else
-      render 'new'
+      flash[:error] = "You are not permitted to create a category"
+      redirect_to :root
     end
   end
 
@@ -29,16 +34,26 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    if @category.update(category_params)
-      redirect_to @category
+    if current_user.admin?
+      if @category.update(category_params)
+        redirect_to @category
+      else
+        render :edit
+      end
     else
-      render :edit
+      flash[:error] = "You are not authorized to update a category"
+      redirect_to :root
     end
   end
 
   def destroy
-    @category.destroy
-    redirect_to categories_path
+    if current_user.admin?
+      @category.destroy
+      redirect_to categories_path
+    else
+      flash[:error] = "You are not authorized to delete a category"
+      redirect_to :root
+    end
   end
 
   private

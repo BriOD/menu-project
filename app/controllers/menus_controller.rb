@@ -14,13 +14,18 @@ class MenusController < ApplicationController
 
   def create
     # raise params.inspect
-    @menu = Menu.new(menu_params)
-    if @menu.save
-      flash[:notice] = "Menu succesfully created!"
-      redirect_to menu_path(@menu)
+    if current_user.admin?
+      @menu = Menu.new(menu_params)
+      if @menu.save
+        flash[:notice] = "Menu succesfully created!"
+        redirect_to menu_path(@menu)
+      else
+        flash[:error] = "Invalid Menu, please try again."
+        render 'new'
+      end
     else
-      flash[:error] = "Invalid Menu, please try again."
-      render 'new'
+      flash[:error] = "You are not authorized to create a menu"
+      redirect_to :root
     end
   end
 
@@ -28,17 +33,25 @@ class MenusController < ApplicationController
   end
 
   def update
-    if @menu.update(menu_params)
-      redirect_to @menu
+    if current_user.admin?
+      if @menu.update(menu_params)
+        redirect_to @menu
+      else
+        render :edit
+      end
     else
-      render :edit
-    end
+      flash[:error] = "You are not authorized to edit a menu"
+      redirect_to :root
   end
 
 
   def destroy
-    @menu.destroy
-    redirect_to menus_path
+    if current_user.admin?
+      @menu.destroy
+      redirect_to menus_path
+    else
+      flash[:error] = "You are not authorized to delete a menu"
+      redirect_to :root
   end
 
   private
