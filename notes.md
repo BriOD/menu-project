@@ -46,4 +46,4 @@
       -I want to limit a user to 1 review per item. A user can edit their own review, but they can't make a 2nd review on a item they already reviewed.
       -be able to create a new category from individual menu show page, if you're an admin
       -be able to edit ones review
-      -refactor authorization, can make a before action: require admin, something like that
+      <!-- -refactor authorization, can make a before action: require admin, something like that -->

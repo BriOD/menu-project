@@ -26,6 +26,9 @@
       <% end %>
       <p><%= review.comment %></p>
     <% end %>
+    <% if review.user == current_user %>
+      <%= link_to "Edit Your Review", edit_item_review_path(@item, review) %>
+    <% end %>
   <% end %>
 
   <%= link_to "Edit Item", edit_item_path(@item) %>
