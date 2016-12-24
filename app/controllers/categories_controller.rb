@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :must_be_admin, only: [:create, :update, :destroy]
+
 
 
   def index
@@ -17,18 +19,13 @@ class CategoriesController < ApplicationController
 
   def create
     # raise params.inspect
-    if current_user.admin?
-      @category = Category.new(category_params)
-      if @category.save
-        flash[:notice] = "Category succesfully created!"
-        redirect_to category_path(@category)
-      else
-        flash[:error] = "Invalid category, please try again"
-        render 'new'
-      end
+    @category = Category.new(category_params)
+    if @category.save
+      flash[:notice] = "Category succesfully created!"
+      redirect_to category_path(@category)
     else
-      flash[:error] = "You are not permitted to create a category"
-      redirect_to :root
+      flash[:error] = "Invalid category, please try again"
+      render 'new'
     end
   end
 
@@ -36,29 +33,19 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    if current_user.admin?
-      if @category.update(category_params)
-        flash[:notice] = "Category succesfully updated!"
-        redirect_to @category
-      else
-        flash[:error] = "Invalid edit, plase try again"
-        render :edit
-      end
+    if @category.update(category_params)
+      flash[:notice] = "Category succesfully updated!"
+      redirect_to @category
     else
-      flash[:error] = "You are not authorized to update a category"
-      redirect_to :root
+      flash[:error] = "Invalid edit, plase try again"
+      render :edit
     end
   end
 
   def destroy
-    if current_user.admin?
-      @category.destroy
-      flash[:notice] = "Item deleted"
-      redirect_to categories_path
-    else
-      flash[:error] = "You are not authorized to delete a category"
-      redirect_to :root
-    end
+    @category.destroy
+    flash[:notice] = "Item deleted"
+    redirect_to categories_path
   end
 
   private

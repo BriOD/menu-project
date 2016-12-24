@@ -1,6 +1,6 @@
 <h1>  <%= @menu.name %> </h1> <%= link_to "Edit Menu", edit_menu_path %>
 
-  <% @menu.categories.each do |category| %>
+  <% @menu.categories.order(:id).each do |category| %>
     <fieldset>
       <h2><%= link_to "#{category.name}", category_path(category) %> </h2>
 
@@ -15,3 +15,4 @@
           <%= link_to "Edit #{category.name}", edit_category_path(category) %>
     </fieldset>
     <% end %>
+  <%= link_to "Delete menu", menu_path(@menu), method: :delete %>

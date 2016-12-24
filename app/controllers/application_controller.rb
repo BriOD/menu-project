@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
     request.env['omniauth.origin'] || root_path
   end
 
+  def must_be_admin
+    flash[:error] = "You are not authorized for this action."
+    redirect_to :root unless current_user.admin?
+  end
+
   protected
 
   def configure_permitted_parameters

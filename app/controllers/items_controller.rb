@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :must_be_admin, only: [:create, :update, :destroy]
+
 
   def index
     @items = Item.all
@@ -15,18 +17,13 @@ class ItemsController < ApplicationController
 
   def create
     # raise params.inspect
-    if current_user.admin?
-      @item = Item.new(item_params)
-      if @item.save
-        flash[:notice] = "Item succesfully created!"
-        redirect_to item_path(@item)
-      else
-        flash[:error] = "Item Invalid, please try again"
-        render 'new'
-      end
+    @item = Item.new(item_params)
+    if @item.save
+      flash[:notice] = "Item succesfully created!"
+      redirect_to item_path(@item)
     else
-      flash[:error] = "You are not authorized to create an item"
-      redirect_to :root
+      flash[:error] = "Item Invalid, please try again"
+      render 'new'
     end
   end
 
@@ -35,30 +32,20 @@ class ItemsController < ApplicationController
 
   def update
     # raise params.inspect
-    if current_user.admin?
-      if @item.update(item_params)
-        flash[:notice] = "Item succesfully updated!"
-        redirect_to @item
-      else
-        flash[:error] = "Invalid error, please try again"
-        render :edit
-      end
+    if @item.update(item_params)
+      flash[:notice] = "Item succesfully updated!"
+      redirect_to @item
     else
-      flash[:error] = "You are not authorized to edit an item"
-      redirect_to :root
+      flash[:error] = "Invalid error, please try again"
+      render :edit
     end
   end
 
 
   def destroy
-    if current_user.admin?
-      @item.destroy
-      flash[:notice] = "Item destroyed"
-      redirect_to items_path
-    else
-      flash[:error] = "You are not authorized to delete an item"
-      redirect_to :root
-    end
+    @item.destroy
+    flash[:notice] = "Item destroyed"
+    redirect_to items_path
   end
 
 

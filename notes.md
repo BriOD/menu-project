@@ -45,4 +45,5 @@
       -I think i want categories to be a nested resource of menu. on the menu show page you will be able to make a category/section, if you are am admin, otherwise it will just display menus.
       -I want to limit a user to 1 review per item. A user can edit their own review, but they can't make a 2nd review on a item they already reviewed.
       -be able to create a new category from individual menu show page, if you're an admin
-      -be able to edit ones review 
+      -be able to edit ones review
+      -refactor authorization, can make a before action: require admin, something like that
