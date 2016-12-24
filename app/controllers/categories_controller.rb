@@ -20,8 +20,10 @@ class CategoriesController < ApplicationController
     if current_user.admin?
       @category = Category.new(category_params)
       if @category.save
+        flash[:notice] = "Category succesfully created!"
         redirect_to category_path(@category)
       else
+        flash[:error] = "Invalid category, please try again"
         render 'new'
       end
     else
@@ -36,8 +38,10 @@ class CategoriesController < ApplicationController
   def update
     if current_user.admin?
       if @category.update(category_params)
+        flash[:notice] = "Category succesfully updated!"
         redirect_to @category
       else
+        flash[:error] = "Invalid edit, plase try again"
         render :edit
       end
     else
@@ -49,6 +53,7 @@ class CategoriesController < ApplicationController
   def destroy
     if current_user.admin?
       @category.destroy
+      flash[:notice] = "Item deleted"
       redirect_to categories_path
     else
       flash[:error] = "You are not authorized to delete a category"

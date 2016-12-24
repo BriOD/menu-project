@@ -35,23 +35,28 @@ class MenusController < ApplicationController
   def update
     if current_user.admin?
       if @menu.update(menu_params)
+        flash[:notice] = "Menu succesfully updated!"
         redirect_to @menu
       else
+        flash[:error] = "Invalid edit, please try again"
         render :edit
       end
     else
       flash[:error] = "You are not authorized to edit a menu"
       redirect_to :root
+    end
   end
 
 
   def destroy
     if current_user.admin?
       @menu.destroy
+      flash[:notice] = "Succesfully deleted the menu"
       redirect_to menus_path
     else
       flash[:error] = "You are not authorized to delete a menu"
       redirect_to :root
+    end
   end
 
   private

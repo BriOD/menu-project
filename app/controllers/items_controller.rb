@@ -18,8 +18,10 @@ class ItemsController < ApplicationController
     if current_user.admin?
       @item = Item.new(item_params)
       if @item.save
+        flash[:notice] = "Item succesfully created!"
         redirect_to item_path(@item)
       else
+        flash[:error] = "Item Invalid, please try again"
         render 'new'
       end
     else
@@ -35,8 +37,10 @@ class ItemsController < ApplicationController
     # raise params.inspect
     if current_user.admin?
       if @item.update(item_params)
+        flash[:notice] = "Item succesfully updated!"
         redirect_to @item
       else
+        flash[:error] = "Invalid error, please try again"
         render :edit
       end
     else
@@ -49,6 +53,7 @@ class ItemsController < ApplicationController
   def destroy
     if current_user.admin?
       @item.destroy
+      flash[:notice] = "Item destroyed"
       redirect_to items_path
     else
       flash[:error] = "You are not authorized to delete an item"
