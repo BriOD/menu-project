@@ -6,6 +6,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
+  after_initialize :default_to_role
+  enum role: [:normal, :admin]
+
    def self.from_omniauth(auth)
      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
        user.email = auth.info.email
@@ -13,9 +16,7 @@ class User < ApplicationRecord
      end
    end
 
-   enum role: [:normal, :admin]
-
-   after_initialize :default_to_role
+   private
 
    def default_to_role
      self.role ||= :normal

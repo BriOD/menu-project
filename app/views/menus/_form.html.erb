@@ -1,11 +1,18 @@
 <%= form_for @menu do |f| %>
+
+  <%= render 'menu_errors' %>
+
     <%= f.label :name %>
     <%= f.text_area :name %>
     <br>
 
-    <p>Choose what categories you want in the menu:</p>
+    <h3>Choose what categories you want in the menu:</h3>
     <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
     <br>
+    <p>
+      If you don't see the category you want, you can
+      <%= link_to "create a new one", new_category_path %>
+    </p>
 
     <%= f.submit "Create Menu" %>
 <% end %>

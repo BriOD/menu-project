@@ -8,8 +8,13 @@ class ApplicationController < ActionController::Base
   end
 
   def must_be_admin
-    flash[:error] = "You are not authorized for this action."
-    redirect_to :root unless current_user.admin?
+    if !current_user.admin?
+      flash[:error] = "You are not authorized for this action"
+      redirect_to :root
+    end
+
+    # flash[:error] = "You are not authorized for this action."
+    # redirect_to :root unless current_user.admin?
   end
 
   protected
