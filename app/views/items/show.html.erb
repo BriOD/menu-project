@@ -30,5 +30,7 @@
       <%= link_to "Edit Your Review", edit_item_review_path(@item, review) %>
     <% end %>
   <% end %>
-
+  
+<% if current_user.admin? %>
   <%= link_to "Edit Item", edit_item_path(@item) %>
+<% end %>

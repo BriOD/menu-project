@@ -1,4 +1,7 @@
-<h1>  <%= @menu.name %> </h1> <%= link_to "Edit Menu", edit_menu_path %>
+<h1>  <%= @menu.name %> </h1>
+<% if current_user.admin? %>
+  <%= link_to "Edit Menu", edit_menu_path %>
+<% end %>
 
   <% @menu.categories.order(:id).each do |category| %>
     <fieldset>
@@ -8,11 +11,17 @@
         <div>
           <%= link_to item.name, item_path(item) %> | <%= item.price %><br>
            <%= item.description %>
-           <%= link_to "Edit Item", edit_item_path(item) %>
+           <% if current_user.admin? %>
+             <%= link_to "Edit Item", edit_item_path(item) %>
+            <% end %>
            <br>
         </div>
           <% end %>
-          <%= link_to "Edit #{category.name}", edit_category_path(category) %>
+          <% if current_user.admin? %>
+            <%= link_to "Edit #{category.name}", edit_category_path(category) %>
+          <% end %>
     </fieldset>
     <% end %>
-  <%= link_to "Delete menu", menu_path(@menu), method: :delete %>
+    <% if current_user.admin? %>
+      <%= link_to "Delete menu", menu_path(@menu), method: :delete %>
+    <% end %>

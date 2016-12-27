@@ -12,9 +12,6 @@ class ApplicationController < ActionController::Base
       flash[:error] = "You are not authorized for this action"
       redirect_to :root
     end
-
-    # flash[:error] = "You are not authorized for this action."
-    # redirect_to :root unless current_user.admin?
   end
 
   protected
