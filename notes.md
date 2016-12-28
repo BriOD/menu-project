@@ -48,8 +48,8 @@
       -be able to create a new category from individual menu show page, if you're an admin
       <!-- -be able to edit ones review -->
       <!-- -refactor authorization, can make a before action: require admin, something like that -->
-    Left off:
-        -Need to fix views/reviews.edit, need to figure out correct path to set.
+    <!-- Left off: -->
+        <!-- -Need to fix views/reviews.edit, need to figure out correct path to set. -->
 
     -In order to solve problem of redirecting to a correct page, maybe a category should be a nested resource of a menu. then when you edit a category you redirect to the menu from params, and the category from params.
     <!-- -It seems I am not allowed to review an item twice, any review on any item restricts me from reviewing a different Item.  -- was checking to see if current_user was in collection of users who have reviewed after i built a review associated to the currect_user -->

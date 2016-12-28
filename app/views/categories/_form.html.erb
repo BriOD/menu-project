@@ -1,5 +1,7 @@
 <%= form_for @category do |f| %>
 
+<%= render 'category_errors' %>
+
 <p>
   <%= f.label :name %>
   <%= f.text_area :name %>

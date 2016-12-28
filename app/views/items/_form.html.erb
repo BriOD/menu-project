@@ -1,4 +1,7 @@
 <%= form_for @item do |f| %>
+
+<%= render 'item_errors' %>
+
 <div class="form-group">
   <%= f.label :name %>
   <%= f.text_area :name, class: "form-control" %>
