@@ -1,2 +1,6 @@
 
 <h1>Welcome To My Resturant</h1>
+
+<% @menus.each do |menu| %>
+  <%= link_to "#{menu.name}", menu_path(menu) %>
+<% end %>
