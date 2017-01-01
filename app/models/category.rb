@@ -5,6 +5,9 @@ class Category < ApplicationRecord
   has_many :category_items
   has_many :items, :through => :category_items
 
+  validates :name, presence: true
+  validates :items, presence: true
+
  def items_attributes=(item_attributes)
    item_attributes.values.each do |item_attribute|
      if item_attribute[:name].present?

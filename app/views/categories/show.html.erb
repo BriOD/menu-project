@@ -1,8 +1,8 @@
 <h1><%= @category.name %>:</h1>
-  <% if current_user.admin? %>
+  <% if current_user && current_user.admin? %>
     <%= link_to "Edit", edit_category_path %>
-    <% end %>
-  
+  <% end %>
+
   <% @category.items.each do |item| %>
   <p>  <%= item.name %> -- <%= item.price %> </p>
   <p>  -<%= item.description %></p>

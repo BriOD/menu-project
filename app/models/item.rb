@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   has_many :category_items
   has_many :categories, :through => :category_items
   validates :name, presence: true
+  validates :price, presence: true
   # validate :already_reviewed?
 
   #if a user has alreadt posted a review on an item, they are not allowed to post a 2nd review, they can only

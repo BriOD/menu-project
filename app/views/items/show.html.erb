@@ -26,11 +26,11 @@
       <% end %>
       <p><%= review.comment %></p>
     <% end %>
-    <% if review.user == current_user %>
+    <% if current_user && review.user == current_user %>
       <%= link_to "Edit Your Review", edit_item_review_path(@item, review) %>
     <% end %>
   <% end %>
-  
-<% if current_user.admin? %>
+
+<% if current_user && current_user.admin? %>
   <%= link_to "Edit Item", edit_item_path(@item) %>
 <% end %>
