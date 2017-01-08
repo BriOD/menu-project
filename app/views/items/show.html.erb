@@ -9,7 +9,7 @@
   <br>
   <%= f.label :rating %>
   <%= f.select :rating, options_for_select((1..5).to_a.map{|s| ["#{s} star".pluralize, s]}) %>
-<br>
+  <br>
   <%= f.submit "Submit Review" %>
 
 <% end %>
@@ -18,19 +18,9 @@
 
 
 <!-- DISPLAYS THE COMMENTS ON THIS ITEM -->
-  <% @item.reviews.each do |review| %>
-    <% if review.valid? %>
-      <p><%= review.user.email %>:</p>
-      <% review.rating.to_i.times do |time| %>
-        <span>√</span>
-      <% end %>
-      <p><%= review.comment %></p>
-    <% end %>
-    <% if current_user && review.user == current_user %>
-      <%= link_to "Edit Your Review", edit_item_review_path(@item, review) %>
-    <% end %>
-  <% end %>
 
-<% if current_user && current_user.admin? %>
-  <%= link_to "Edit Item", edit_item_path(@item) %>
-<% end %>
+<%= render 'comments' %>
+
+
+
+  <%= authorize(link_to "Edit Item", edit_item_path(@item)) %>
