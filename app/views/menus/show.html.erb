@@ -1,27 +1,21 @@
 <h1>  <%= @menu.name %> </h1>
 
-
   <%= authorize(link_to "Edit Menu", edit_menu_path) %>
 
   <% @menu.categories.order(:id).each do |category| %>
-    <fieldset>
-      <h2><%= link_to "#{category.name}", category_path(category) %> </h2>
+      <fieldset>
+        <h2><%= link_to "#{category.name}", category_path(category) %> </h2>
 
-        <% category.items.each do |item| %>
-        <div>
-          <%= link_to item.name, item_path(item) %> | <%= item.price %><br>
-           <%= item.description %>
-           <% if current_user && current_user.admin? %>
-             <%= link_to "Edit Item", edit_item_path(item) %>
-            <% end %>
-           <br>
-        </div>
+          <% category.items.each do |item| %>
+              <div>
+                <%= link_to item.name, item_path(item) %> | <%= item.price %><br>
+                 <%= item.description %>
+                 <%= authorize(link_to "Edit Item", edit_item_path(item)) %>
+                 <br>
+              </div>
           <% end %>
-          <% if current_user && current_user.admin? %>
-            <%= link_to "Edit #{category.name}", edit_category_path(category) %>
-          <% end %>
-    </fieldset>
+        <%= authorize(link_to "Edit #{category.name}", edit_category_path(category)) %>
+      </fieldset>
     <% end %>
-    <% if current_user && current_user.admin? %>
-      <%= link_to "Delete menu", menu_path(@menu), method: :delete %>
-    <% end %>
+
+    <%= authorize(link_to "Delete menu", menu_path(@menu), method: :delete) %>
