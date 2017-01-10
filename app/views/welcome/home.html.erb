@@ -4,3 +4,12 @@
 <% @menus.each do |menu| %>
   <%= link_to "#{menu.name}", menu_path(menu) %>
 <% end %>
+
+<% if !@popular_items.empty? %>
+  <h2>Check out our most popular items:</h2>
+    <ul>
+      <% @popular_items.each do |item| %>
+      <li> <%= link_to "#{item.name}", item_path(item) %> </li>
+      <% end %>
+    </ul>
+<% end %>
