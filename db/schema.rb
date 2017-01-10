@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222010529) do
+ActiveRecord::Schema.define(version: 20170109180031) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -29,8 +29,9 @@ ActiveRecord::Schema.define(version: 20161222010529) do
     t.string   "name"
     t.string   "price"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.float    "average_rating", default: 0.0
   end
 
   create_table "menu_categories", force: :cascade do |t|

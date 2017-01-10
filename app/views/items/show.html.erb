@@ -1,6 +1,7 @@
 <h1><%= @item.name %></h1>
-  <%= @item.description %> <br>
-  <%= @item.price %> <br>
+  <p><%= @item.description %> </p>
+  <p>$<%= @item.price %> </p>
+  <p>Average Rating: <%= @item.average_rating %> </p>
 
   <!-- OPTION TO RATE OR COMMENT ON THIS ITEM -->
   <%= form_for @review, url: item_reviews_path(@item, @review)  do |f| %>
@@ -21,6 +22,4 @@
 
 <%= render 'comments' %>
 
-
-
-  <%= authorize(link_to "Edit Item", edit_item_path(@item)) %>
+<%= authorize(link_to "Edit Item", edit_item_path(@item)) %>

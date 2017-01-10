@@ -16,6 +16,16 @@ class Item < ApplicationRecord
     end
   end
 
+  def avg_rating
+    ratings = self.reviews.collect {|review| review.rating}
+    ratings.inject{ |sum, el| sum + el }.to_f / ratings.size
+    # binding.pry
+  end
+
+  def self.most_popular
+    where(:average_rating => 4..5)
+  end
+
   # def already_reviewed?
   #   if users_who_reviewed.include?(current_user)
   #     false
