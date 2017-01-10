@@ -18,7 +18,8 @@ class Item < ApplicationRecord
 
   def avg_rating
     ratings = self.reviews.collect {|review| review.rating}
-    ratings.inject{ |sum, el| sum + el }.to_f / ratings.size
+    average = ratings.inject{ |sum, el| sum + el }.to_f / ratings.size
+    average.round(2)
     # binding.pry
   end
 
