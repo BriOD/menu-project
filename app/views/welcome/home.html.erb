@@ -1,9 +1,15 @@
 
 <h1>Welcome To My Resturant</h1>
+<p>Check out our menus:</p>
 
 <% @menus.each do |menu| %>
   <%= link_to "#{menu.name}", menu_path(menu) %>
 <% end %>
+
+<%# if signed_in? %>
+  <!-- <p>check out all the items that you have reviewed</p> -->
+  <%#= link_to "Your reviews", user_reviews_path(current_user) %>
+<%# end %>
 
 <% if !@popular_items.empty? %>
   <h2>Check out our most popular items:</h2>

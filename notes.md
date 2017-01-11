@@ -44,13 +44,13 @@
     Up next:
       -I think i want categories to be a nested resource of menu. on the menu show page you will be able to make a category/section, if you are am admin, otherwise it will just display menus.
       <!-- -I want to limit a user to 1 review per item. A user can edit their own review, but they can't make a 2nd review on a item they already reviewed. -->
-        -solved this problem, but did so by putting the logic in the controller, don't really like that solution
+        <!-- -solved this problem, but did so by putting the logic in the controller, don't really like that solution -->
       -be able to create a new category from individual menu show page, if you're an admin
       <!-- -be able to edit ones review -->
       <!-- -refactor authorization, can make a before action: require admin, something like that -->
     <!-- Left off: -->
         <!-- -Need to fix views/reviews.edit, need to figure out correct path to set. -->
-      -Refactor and clean up item show page. the form_for review should just be a partial, as well as displaying the comments and ratings.
+      <!-- -Refactor and clean up item show page. the form_for review should just be a partial, as well as displaying the comments and ratings. -->
       <!-- -create a #most_popular_items method to display the highest rated items. -->
       <!-- -maybe a tp rated items: Item.where("average_rating > 4") or Item.where(:average_rating => 4..5) -->
       <!-- -Item.where(:created_at => 1.month.ago..DateTime.now) -- newest items on the menu -->
@@ -62,4 +62,6 @@
 
 
     -In order to solve problem of redirecting to a correct page, maybe a category should be a nested resource of a menu. then when you edit a category you redirect to the menu from params, and the category from params.
+
+    -Let user be able to see all the reviews that they have made.
     <!-- -It seems I am not allowed to review an item twice, any review on any item restricts me from reviewing a different Item.  -- was checking to see if current_user was in collection of users who have reviewed after i built a review associated to the currect_user -->

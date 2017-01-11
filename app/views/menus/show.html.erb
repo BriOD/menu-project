@@ -10,6 +10,7 @@
               <div>
                 <%= link_to item.name, item_path(item) %> | <%= item.price %><br>
                  <%= item.description %>
+                 <p> Average Rating: <%= item.avg_rating %></p>
                  <%= authorize(link_to "Edit Item", edit_item_path(item)) %>
                  <br>
               </div>
